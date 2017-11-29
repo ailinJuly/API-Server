@@ -1,10 +1,17 @@
 class Train < ApplicationRecord
   has_many :reservations
   validates_presence_of :number
-
+  SEATS = begin
+    (1..6).to_a.map do |series|
+      ["A","B","C","D","E"].map do |letter|
+        "#{series}#{letter}"
+      end
+    end
+end
   def available_seats
-    ["1a","1b","1c","1d"]
-
+      return SEATS - self.reservations.pluck(:seat_number)
   end
+
+
 
 end
