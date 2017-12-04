@@ -1,4 +1,5 @@
 class Train < ApplicationRecord
+  mount_uploader :train_logo,TrainLogoUploader
   has_many :reservations
   validates_presence_of :number
   SEATS = begin
